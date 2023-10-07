@@ -18,11 +18,13 @@
 
 								<div class="form-outline mb-4">
 									{{ form_widget(registrationForm.email, { 'attr': {'class': 'form-control form-control-lg', 'id': 'form3Example3cg'} }) }}
+									{{ form_errors(registrationForm.email) }}
 									<label class="form-label" for="form3Example3cg">Your Email</label>
 								</div>
 
 								<div class="form-outline mb-4">
 									{{ form_widget(registrationForm.plainPassword, { 'attr': {'class': 'form-control form-control-lg', 'id': 'form3Example4cg'} }) }}
+									{{ form_errors(registrationForm.plainPassword) }}
 									<label class="form-label" for="form3Example4cg">Password</label>
 								</div>
 
