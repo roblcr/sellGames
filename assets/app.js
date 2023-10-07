@@ -8,6 +8,7 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.scss';
 import 'bootstrap';
+import 'owl.carousel';
 
 
 /*  ---------------------------------------------------
@@ -20,8 +21,19 @@ Created: Colorib
 ---------------------------------------------------------  */
 
 'use strict';
+$(".banner__slider").owlCarousel({
+    loop: true,
+    margin: 0,
+    items: 1,
+    dots: true,
+    smartSpeed: 1200,
+    autoHeight: false,
+    autoplay: true
+});
 
 (function ($) {
+
+
 
     /*------------------
         Preloader
@@ -95,15 +107,16 @@ Created: Colorib
     /*--------------------------
         Banner Slider
     ----------------------------*/
-    $(".banner__slider").owlCarousel({
-        loop: true,
-        margin: 0,
-        items: 1,
-        dots: true,
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: true
-    });
+    // $(".banner__slider").owlCarousel({
+    //     loop: true,
+    //     margin: 0,
+    //     items: 1,
+    //     dots: true,
+    //     smartSpeed: 1200,
+    //     autoHeight: false,
+    //     autoplay: true
+    // });
+
 
     /*--------------------------
         Product Details Slider

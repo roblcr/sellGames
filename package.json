@@ -25,6 +25,7 @@
     "dependencies": {
         "elegant-icons": "^0.0.1",
         "font-awesome": "^4.7.0",
-        "jquery": "^3.7.1"
+        "jquery": "^3.7.1",
+        "owl.carousel": "^2.3.4"
     }
 }
