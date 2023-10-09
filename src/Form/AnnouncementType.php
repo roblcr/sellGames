@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -55,11 +56,11 @@ class AnnouncementType extends AbstractType
                 'expanded' => false,
                 'required' => true,
             ])
-            // ->add('images', CollectionType::class, [
-            //     'label' => 'Images',
-            //     'entry_type' => ImageType::class, // Remplacez par le type de champ approprié
-            //     'allow_add' => true,
-            // ])
+            ->add('images', FileType::class, [
+                'label' => 'Images',
+                'required' => true,
+                'mapped' => false,
+            ])
             ->add('platform', EnumType::class, [
                 'label' => 'Platform',
                 'class' => Platform::class,

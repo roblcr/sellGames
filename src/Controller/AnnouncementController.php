@@ -7,6 +7,7 @@ use App\Form\AnnouncementType;
 use App\Service\GameApiService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AnnouncementController extends AbstractController
 {
     #[Route('/create-announcement', name: 'app_create_announcement')]
-    public function createAnnouncement(Request $request, EntityManagerInterface $em)
+    public function createAnnouncement(Request $request, EntityManagerInterface $em, GameApiService $gameApiService)
     {
         $announcement = new Announcement();
         $form = $this->createForm(AnnouncementType::class, $announcement);
@@ -24,6 +25,19 @@ class AnnouncementController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $imageFile = $form->get('images')->getData();
+
+            if ($imageFile instanceof UploadedFile) {
+                // Gérez le téléchargement et l'enregistrement de l'image ici
+                $newFileName = md5(uniqid()) . '.' . $imageFile->guessExtension();
+                $imageFile->move(
+                    $this->getParameter('images_directory'),
+                    $newFileName
+                );
+
+                // Enregistrez le nom du fichier d'image dans l'entité Announcement
+                $announcement->setImages([$newFileName]);
+            }
 
             $announcement->setPublishedDate(new \DateTime());
             // Enregistrer l'annonce dans la base de données

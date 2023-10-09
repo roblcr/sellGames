@@ -53,4 +53,20 @@ class GameApiService
 
         return $titles;
     }
+
+    // public function getGameImage(string $title): ?string
+    // {
+    //     $url = 'https://api.rawg.io/api/games?key=' . $this->apiKey . '&search=' . urlencode($title);
+
+    //     $response = $this->httpClient->get($url);
+
+    //     $data = json_decode($response->getBody(), true);
+
+    //     // Assurez-vous que le jeu a été trouvé dans les résultats
+    //     if (!empty($data['results'][0]['background_image'])) {
+    //         return $data['results'][0]['background_image'];
+    //     }
+
+    //     return null;
+    // }
 }
