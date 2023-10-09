@@ -16,6 +16,7 @@
 					<div class="card-body">
 						{{ form_start(form, {'attr': {'class': 'form'}}) }}
 
+
 						{{ form_widget(form) }}
 
 						<div class="text-center mt-4">
@@ -37,11 +38,27 @@
 
 {% block javascripts %}
 	{{ parent() }}
-	<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	<script>
 		$(document).ready(function () {
 $('.category-select').select2();
+});
+$('.game-select').select2({
+ajax: {
+url: '/search-games',
+dataType: 'json',
+delay: 250,
+processResults: function (data) {
+return {
+results: data.map(function (game) {
+return {id: game, text: game};
+})
+};
+},
+cache: true
+},
+minimumInputLength: 3
 });
 	</script>
 {% endblock %}
