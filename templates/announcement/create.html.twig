@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AnnouncementController!
+{% endblock %}
+
+{% block body %}
+	{# templates/announcement/create.html.twig #}
+
+	<h1>Créer une annonce</h1>
+
+	{{ form_start(form) }}
+
+	{{ form_widget(form) }}
+
+	<button type="submit">Créer</button>
+
+	{{ form_end(form) }}
+
+{% endblock %}
