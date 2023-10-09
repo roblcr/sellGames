@@ -54,6 +54,7 @@ class AnnouncementType extends AbstractType
                 'class' => Category::class,
                 'multiple' => true,
                 'required' => true,
+                'attr' => ['class' => 'category-select']
             ]);
     }
 
