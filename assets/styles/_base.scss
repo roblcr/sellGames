@@ -329,3 +329,41 @@ ol {
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
   }
+
+  /*---------------------
+  Categories
+-----------------------*/
+.badge-custom-fps { background-color: #ff0000; color: #fff; }
+.badge-custom-tps { background-color: #00ff00; color: #fff; }
+.badge-custom-rts { background-color: #0000ff; color: #fff; }
+.badge-custom-rpg { background-color: #ff00ff; color: #fff; }
+.badge-custom-mmorpg { background-color: #ffff00; color: #000; }
+.badge-custom-moba { background-color: #00ffff; color: #000; }
+.badge-custom-sandbox { background-color: #ff9900; color: #000; }
+.badge-custom-combat { background-color: #990000; color: #fff; }
+.badge-custom-simulation { background-color: #009900; color: #fff; }
+.badge-custom-platform { background-color: #990099; color: #fff; }
+.badge-custom-battleroyal { background-color: #999900; color: #fff; }
+.badge-custom-action { background-color: #009999; color: #fff; }
+.badge-custom-aventure { background-color: #990066; color: #fff; }
+.badge-custom-puzzle { background-color: #996633; color: #fff; }
+.badge-custom-reflexion { background-color: #663399; color: #fff; }
+.badge-custom-survival { background-color: #ff6633; color: #fff; }
+.badge-custom-horror { background-color: #ff3366; color: #fff; }
+.badge-custom-roguelike { background-color: #33ff66; color: #000; }
+.badge-custom-partygame { background-color: #666666; color: #fff; }
+
+  /*---------------------
+  Categories
+-----------------------*/
+
+.badge-state {
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+}
+
+.badge-state-neuf { background-color: #33ff66; color: #000; }
+.badge-state-bon_etat { background-color: #009999; color: #000; }
+.badge-state-usage { background-color: #999900; color: #000; }
+.badge-state-defaillant { background-color: #ff3366; color: #000; }
