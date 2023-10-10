@@ -35,12 +35,9 @@ class AnnouncementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
 
-        $gameTitles = $this->gameApiService->getAllGameTitles();
-
         $builder
             ->add('title', ChoiceType::class, [
                 'label' => 'Titre',
-                // 'choices' => array_combine($gameTitles, $gameTitles),
                 'attr' => ['class' => 'game-select'],
             ])
             ->add('description', TextareaType::class, [

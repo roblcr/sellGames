@@ -30,12 +30,29 @@ class AnnouncementRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findByPlatforms(array $platforms)
+    public function findByPlaystation()
     {
         return $this->createQueryBuilder('a')
-            ->join('a.platforms', 'p')
-            ->andWhere('p.name IN (:platforms)')
-            ->setParameter('platforms', $platforms)
+            ->andWhere('a.platform = :platformName')
+            ->setParameter('platformName', 'Playstation')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByXbox()
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.platform = :platformName')
+            ->setParameter('platformName', 'Xbox')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByPc()
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.platform = :platformName')
+            ->setParameter('platformName', 'PC')
             ->getQuery()
             ->getResult();
     }

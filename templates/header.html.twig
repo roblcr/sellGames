@@ -52,17 +52,20 @@
 				<div class="col-xl-6 col-lg-7">
 					<nav class="header__menu">
 						<ul>
-							<li class="active">
+							<li class="active" id="home">
 								<a href="{{ path('app_home') }}">Home</a>
 							</li>
-							<li>
+							<li id="announcements">
 								<a href="{{ path('app_announcements') }}">Tout les jeux</a>
 							</li>
-							<li>
-								<a href="#">Playstation</a>
+							<li id="playstation">
+								<a href="{{ path('app_playstation') }}">Playstation</a>
 							</li>
-							<li>
-								<a href="./shop.html">Xbox</a>
+							<li id="xbox">
+								<a href="{{ path('app_xbox') }}">Xbox</a>
+							</li>
+							<li id="pc">
+								<a href="{{ path('app_pc') }}">PC</a>
 							</li>
 							<li>
 								<a href="#">Pages</a>
@@ -80,9 +83,6 @@
 										<a href="./blog-details.html">Blog Details</a>
 									</li>
 								</ul>
-							</li>
-							<li>
-								<a href="./blog.html">PC</a>
 							</li>
 							<li>
 								<a href="./contact.html">Contact</a>
@@ -127,3 +127,30 @@
 	</header>
 	<!-- Header Section End -->
 </body>
+
+{% block javascripts %}
+	<script>
+		var currentPage = window.location.pathname;
+
+function setActiveTab() {
+var menuItems = document.querySelectorAll('.header__menu ul li');
+menuItems.forEach(function (item) {
+item.classList.remove('active');
+});
+
+if (currentPage === "{{ path('app_home') }}") {
+document.getElementById('home').classList.add('active');
+} else if (currentPage === "{{ path('app_announcements') }}") {
+document.getElementById('announcements').classList.add('active');
+} else if (currentPage === "{{ path('app_playstation') }}") {
+document.getElementById('playstation').classList.add('active');
+} else if (currentPage === "{{ path('app_xbox') }}") {
+document.getElementById('xbox').classList.add('active');
+} else if (currentPage === "{{ path('app_pc') }}") {
+document.getElementById('pc').classList.add('active');
+}
+}
+
+setActiveTab();
+	</script>
+{% endblock %}

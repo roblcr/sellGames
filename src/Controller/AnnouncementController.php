@@ -76,7 +76,7 @@ class AnnouncementController extends AbstractController
     }
 
     #[Route('/create-announcement', name: 'app_create_announcement')]
-    public function createAnnouncement(Request $request, EntityManagerInterface $em, GameApiService $gameApiService)
+    public function createAnnouncement(Request $request, EntityManagerInterface $em)
     {
         $announcement = new Announcement();
         $form = $this->createForm(AnnouncementType::class, $announcement);
