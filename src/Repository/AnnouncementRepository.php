@@ -30,6 +30,16 @@ class AnnouncementRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findByPlatforms(array $platforms)
+    {
+        return $this->createQueryBuilder('a')
+            ->join('a.platforms', 'p')
+            ->andWhere('p.name IN (:platforms)')
+            ->setParameter('platforms', $platforms)
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Announcement[] Returns an array of Announcement objects
     //     */

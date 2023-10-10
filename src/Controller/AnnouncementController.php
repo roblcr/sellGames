@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
+use App\Config\Category;
+use App\Config\Platform;
 use App\Entity\Announcement;
 use App\Form\AnnouncementType;
 use App\Repository\AnnouncementRepository;
 use App\Service\GameApiService;
 use Doctrine\ORM\EntityManagerInterface;
+use PhpParser\Node\Stmt\Catch_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -18,12 +21,47 @@ class AnnouncementController extends AbstractController
 {
 
     #[Route('/announcements', name: 'app_announcements')]
-    public function index(AnnouncementRepository $announcementRepository)
+    public function index(AnnouncementRepository $announcementRepository, Request $request)
     {
         $announcements = $announcementRepository->findAll();
 
+        $categories = [
+            Category::Action,
+            Category::Aventure,
+            Category::BattleRoyal,
+            Category::Combat,
+            Category::FPS,
+            Category::Horror,
+            Category::MMORPG,
+            Category::MOBA,
+            Category::PartyGame,
+            Category::Platform,
+            Category::Puzzle,
+            Category::Reflexion,
+            Category::RogueLike,
+            Category::RPG,
+            Category::RTS,
+            Category::Sandbox,
+            Category::Simulation,
+            Category::Survival,
+            Category::TPS
+        ];
+
+        $platforms = [
+            Platform::Nintendo,
+            Platform::PC,
+            Platform::Playstation,
+            Platform::Xbox
+        ];
+
+        dump($request->get('platform'));
+        // $selectedPlatforms = $request->query->get('platform', []);
+        // dd($selectedPlatforms);
+
         return $this->render('announcement/index.html.twig', [
             'announcements' => $announcements,
+            'platforms' => $platforms,
+            'categories' => $categories
         ]);
     }
 
