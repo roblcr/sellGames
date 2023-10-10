@@ -14,10 +14,29 @@
 						<h1>Créer une annonce</h1>
 					</div>
 					<div class="card-body">
-						{{ form_start(form, {'attr': {'class': 'form'}}) }}
+						{{ form_start(form, {'attr': {'class': 'form', 'enctype': 'multipart/form-data'}}) }}
 
+						{{ form_row(form.title) }}
+						{{ form_row(form.description) }}
+						{{ form_row(form.price) }}
+						{{ form_row(form.state) }}
+						{{ form_row(form.platform) }}
+						{{ form_row(form.category) }}
 
-						{{ form_widget(form) }}
+						<fieldset class="mb-3">
+							<legend class="col-form-label required">Images</legend>
+							<div
+								id="announcement_images" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
+								{# Affichez les images existantes #}
+								{% for imageForm in form.images %}
+									<div class="mb-3">
+										{{ form_row(imageForm, {'label': false}) }}
+									</div>
+								{% endfor %}
+							</div>
+						</fieldset>
+
+						<button type="button" class="btn btn-primary" id="add-image-button">Ajouter une image</button>
 
 						<div class="text-center mt-4">
 							<button type="submit" class="btn btn-primary">Créer</button>
@@ -59,6 +78,16 @@ return {id: game, text: game};
 cache: true
 },
 minimumInputLength: 3
+});
+
+$(document).ready(function () {
+$('#add-image-button').click(function (e) {
+e.preventDefault();
+var prototype = $('#announcement_images').data('prototype');
+var index = $('#announcement_images').find(':input').length;
+var newForm = prototype.replace(/__name__/g, index);
+$('#announcement_images').append(newForm);
+});
 });
 	</script>
 {% endblock %}

@@ -25,19 +25,21 @@ class AnnouncementController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $imageFile = $form->get('images')->getData();
+            $images = $form->get('images')->getData();
+            $uploadedImages = [];
 
-            if ($imageFile instanceof UploadedFile) {
-                // Gérez le téléchargement et l'enregistrement de l'image ici
-                $newFileName = md5(uniqid()) . '.' . $imageFile->guessExtension();
-                $imageFile->move(
+            foreach ($images as $image) {
+                /** @var UploadedFile $image */
+                dump($image[0]);
+                $fileName = md5(uniqid()) . '.' . $image[0]->guessExtension();
+                $image[0]->move(
                     $this->getParameter('images_directory'),
-                    $newFileName
+                    $fileName
                 );
-
-                // Enregistrez le nom du fichier d'image dans l'entité Announcement
-                $announcement->setImages([$newFileName]);
+                $uploadedImages[] = $fileName;
             }
+
+            $announcement->setImages($uploadedImages);
 
             $announcement->setPublishedDate(new \DateTime());
             // Enregistrer l'annonce dans la base de données

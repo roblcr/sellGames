@@ -56,10 +56,19 @@ class AnnouncementType extends AbstractType
                 'expanded' => false,
                 'required' => true,
             ])
-            ->add('images', FileType::class, [
+            ->add('images', CollectionType::class, [
                 'label' => 'Images',
-                'required' => true,
-                'mapped' => false,
+                'entry_type' => FileType::class,
+                'entry_options' => [
+                    'label' => false,
+                    'required' => true,
+                    'multiple' => true,
+                    'attr' => [
+                        'accept' => 'image/*',
+                    ],
+                ],
+                'allow_add' => true,
+                'by_reference' => false,
             ])
             ->add('platform', EnumType::class, [
                 'label' => 'Platform',
@@ -88,6 +97,7 @@ class AnnouncementType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Announcement::class,
+
         ]);
     }
 }
