@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Announcement;
 use App\Form\AnnouncementType;
+use App\Repository\AnnouncementRepository;
 use App\Service\GameApiService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,6 +16,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AnnouncementController extends AbstractController
 {
+
+    #[Route('/announcements', name: 'app_announcements')]
+    public function index(AnnouncementRepository $announcementRepository)
+    {
+        $announcements = $announcementRepository->findAll();
+
+        return $this->render('announcement/index.html.twig', [
+            'announcements' => $announcements,
+        ]);
+    }
+
     #[Route('/create-announcement', name: 'app_create_announcement')]
     public function createAnnouncement(Request $request, EntityManagerInterface $em, GameApiService $gameApiService)
     {
