@@ -34,7 +34,9 @@
 									</div>
 								{% endfor %}
 							</div>
+							<small class="text-muted">Maximum 3 images sont autorisées.</small>
 						</fieldset>
+
 
 						<button type="button" class="btn btn-primary" id="add-image-button">Ajouter une image</button>
 
@@ -42,7 +44,6 @@
 							<button type="submit" class="btn btn-primary">Créer</button>
 						</div>
 
-						{{ form_end(form) }}
 					</div>
 				</div>
 			</div>
@@ -85,8 +86,18 @@ $('#add-image-button').click(function (e) {
 e.preventDefault();
 var prototype = $('#announcement_images').data('prototype');
 var index = $('#announcement_images').find(':input').length;
+
+if (index < 3) {
 var newForm = prototype.replace(/__name__/g, index);
 $('#announcement_images').append(newForm);
+
+// Vérifiez si le nombre d'images atteint 3 et désactive le bouton si c'est le cas
+if (index + 1 === 3) {
+$('#add-image-button').attr('disabled', 'disabled');
+}
+} else {
+alert('Maximum 3 images sont autorisées.');
+}
 });
 });
 	</script>

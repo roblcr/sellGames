@@ -21,6 +21,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Count;
 
 class AnnouncementType extends AbstractType
 {
@@ -54,7 +55,6 @@ class AnnouncementType extends AbstractType
                 'required' => true,
             ])
             ->add('images', CollectionType::class, [
-                'label' => 'Images',
                 'entry_type' => FileType::class,
                 'entry_options' => [
                     'label' => false,
@@ -62,6 +62,12 @@ class AnnouncementType extends AbstractType
                     'multiple' => true,
                     'attr' => [
                         'accept' => 'image/*',
+                    ],
+                    'constraints' => [
+                        new Count([
+                            'max' => 3,
+                            'maxMessage' => 'Vous ne pouvez télécharger que {{ limit }} images au maximum.',
+                        ]),
                     ],
                 ],
                 'allow_add' => true,
