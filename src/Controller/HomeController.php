@@ -15,8 +15,11 @@ class HomeController extends AbstractController
     {
         $announcements = $announcementRepository->findAll();
 
+        $randomAnnouncements = $announcementRepository->getRandomAnnouncements();
+
         return $this->render('home/index.html.twig', [
             'announcements' => $announcements,
+            'randomAnnouncements' => $randomAnnouncements
         ]);
     }
 }

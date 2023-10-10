@@ -84,29 +84,30 @@
         </div>
         <div class="row property__gallery">
             {% for game in announcements %}
-            <div class="col-lg-3 col-md-4 col-sm-6 mix">
-                <div class="product__item">
-                    <!-- Boucle sur les images du jeu -->
-                    {% for image in game.images %}
-                        <div class="product__item__pic set-bg" data-setbg="{{ asset('uploads/images/' ~ image) }}">
-                            {% for category in game.category %}
-                                <span class="badge badge-custom-{{ category.name|lower }}">{{ category.name  }}</span>
-                            {% endfor %}
-							{% if game.state is defined %}
+    <div class="col-lg-3 col-md-4 col-sm-6 mix">
+        <div class="product__item">
+            <!-- Afficher la première image du jeu -->
+            {% if game.images|length > 0 %}
+                <div class="product__item__pic set-bg" data-setbg="{{ asset('uploads/images/' ~ game.images[0]) }}">
+                    {% for category in game.category %}
+                        <span class="badge badge-custom-{{ category.name|lower }}">{{ category.name  }}</span>
+                    {% endfor %}
+                    {% if game.state is defined %}
                         <span class="badge badge-state badge-state-{{ game.state.name|lower }}">{{ game.state.name }}</span>
                     {% endif %}
-                        </div>
-                    {% endfor %}
-                    
-                    <div class="product__item__text">
-                        <h6>
-                            <a href="#">{{ game.title }}</a>
-                        </h6>
-                        <div class="product__price">{{ game.price }} €</div>
-                    </div>
                 </div>
+            {% endif %}
+            
+            <div class="product__item__text">
+                <h6>
+                    <a href="#">{{ game.title }}</a>
+                </h6>
+                <div class="product__price">{{ game.price }} €</div>
             </div>
-            {% endfor %}
+        </div>
+    </div>
+{% endfor %}
+
         </div>
     </div>
 </section>
@@ -120,27 +121,15 @@
 			<div class="row">
 				<div class="col-xl-7 col-lg-8 m-auto">
 					<div class="banner__slider owl-carousel">
+					{% for randomAnnouncement in randomAnnouncements %}
 						<div class="banner__item">
 							<div class="banner__text">
-								<span>The Chloe Collection</span>
-								<h1>The Project Jacket</h1>
+								<span>{{ randomAnnouncement.title }}</span>
+								<img src="{{ asset('uploads/images/' ~ randomAnnouncement.images[0]) }}" alt="{{ randomAnnouncement.title }}" class="img-fluid mx-auto d-block" style="width: 200px; height: 200px;">
 								<a href="#">Shop now</a>
 							</div>
 						</div>
-						<div class="banner__item">
-							<div class="banner__text">
-								<span>The Chloe Collection</span>
-								<h1>The Project Jacket</h1>
-								<a href="#">Shop now</a>
-							</div>
-						</div>
-						<div class="banner__item">
-							<div class="banner__text">
-								<span>The Chloe Collection</span>
-								<h1>The Project Jacket</h1>
-								<a href="#">Shop now</a>
-							</div>
-						</div>
+						{% endfor %}
 					</div>
 				</div>
 			</div>
