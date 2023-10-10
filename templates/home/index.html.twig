@@ -13,7 +13,7 @@
 						<div class="categories__text">
 							<h1>Tout les jeux</h1>
 							{# <p>Sitamet, consectetur adipiscing elit, sed do eiusmod tempor incidid-unt labore
-																																																																																																			edolore magna aliquapendisse ultrices gravida.</p> #}
+																																																																																																										edolore magna aliquapendisse ultrices gravida.</p> #}
 							<a href="#">Shop now</a>
 						</div>
 					</div>
@@ -63,56 +63,57 @@
 	</section>
 	<!-- Categories Section End -->
 
-<!-- Product Section Begin -->
-<section class="product spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-4">
-                <div class="section-title">
-                    <h4>New product</h4>
-                </div>
-            </div>
-            <div class="col-lg-8 col-md-8">
-                <ul class="filter__controls">
-                    <li class="active" data-filter="*">All</li>
-                    <li data-filter=".women">Playstation</li>
-                    <li data-filter=".men">Xbox</li>
-                    <li data-filter=".kid">Nintendo</li>
-                    <li data-filter=".accessories">PC</li>
-                </ul>
-            </div>
-        </div>
-        <div class="row property__gallery">
-            {% for game in announcements %}
-    <div class="col-lg-3 col-md-4 col-sm-6 mix">
-        <div class="product__item">
-            <!-- Afficher la première image du jeu -->
-            {% if game.images|length > 0 %}
-                <div class="product__item__pic set-bg" data-setbg="{{ asset('uploads/images/' ~ game.images[0]) }}">
-                    {% for category in game.category %}
-                        <span class="badge badge-custom-{{ category.name|lower }}">{{ category.name  }}</span>
-                    {% endfor %}
-                    {% if game.state is defined %}
-                        <span class="badge badge-state badge-state-{{ game.state.name|lower }}">{{ game.state.name }}</span>
-                    {% endif %}
-                </div>
-            {% endif %}
-            
-            <div class="product__item__text">
-                <h6>
-                    <a href="#">{{ game.title }}</a>
-                </h6>
-                <div class="product__price">{{ game.price }} €</div>
-            </div>
-        </div>
-    </div>
-{% endfor %}
+	<!-- Product Section Begin -->
+	<section class="product spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-4">
+					<div class="section-title">
+						<h4>New product</h4>
+					</div>
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<ul class="filter__controls">
+						<li class="active" data-filter="*">All</li>
+						<li data-filter=".women">Playstation</li>
+						<li data-filter=".men">Xbox</li>
+						<li data-filter=".kid">Nintendo</li>
+						<li data-filter=".accessories">PC</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row property__gallery">
+				{% for game in announcements %}
+					<div class="col-lg-3 col-md-4 col-sm-6 mix">
+						<div
+							class="product__item">
+							<!-- Afficher la première image du jeu -->
+							{% if game.images|length > 0 %}
+								<div class="product__item__pic set-bg" data-setbg="{{ asset('uploads/images/' ~ game.images[0]) }}">
+									{% for category in game.category %}
+										<span class="badge badge-custom-{{ category.name|lower }}">{{ category.name  }}</span>
+									{% endfor %}
+									{% if game.state is defined %}
+										<span class="badge badge-state badge-state-{{ game.state.name|lower }}">{{ game.state.name }}</span>
+									{% endif %}
+								</div>
+							{% endif %}
 
-        </div>
-    </div>
-</section>
-<!-- Product Section End -->
+							<div class="product__item__text">
+								<h6>
+									<a href="{{ path('app_announcement_details', {'id': game.id}) }}">{{ game.title }}</a>
+								</h6>
+								<div class="product__price">{{ game.price }}
+									€</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
 
+			</div>
+		</div>
+	</section>
+	<!-- Product Section End -->
 
 
 	<!-- Banner Section Begin -->
@@ -121,14 +122,14 @@
 			<div class="row">
 				<div class="col-xl-7 col-lg-8 m-auto">
 					<div class="banner__slider owl-carousel">
-					{% for randomAnnouncement in randomAnnouncements %}
-						<div class="banner__item">
-							<div class="banner__text">
-								<span>{{ randomAnnouncement.title }}</span>
-								<img src="{{ asset('uploads/images/' ~ randomAnnouncement.images[0]) }}" alt="{{ randomAnnouncement.title }}" class="img-fluid rounded-circle mx-auto d-block" style="width: 200px; height: 200px;">
-								<a href="#">Shop now</a>
+						{% for randomAnnouncement in randomAnnouncements %}
+							<div class="banner__item">
+								<div class="banner__text">
+									<span>{{ randomAnnouncement.title }}</span>
+									<img src="{{ asset('uploads/images/' ~ randomAnnouncement.images[0]) }}" alt="{{ randomAnnouncement.title }}" class="img-fluid rounded-circle mx-auto d-block" style="width: 200px; height: 200px;">
+									<a href="#">Shop now</a>
+								</div>
 							</div>
-						</div>
 						{% endfor %}
 					</div>
 				</div>

@@ -54,14 +54,24 @@ class AnnouncementController extends AbstractController
             Platform::Xbox
         ];
 
-        dump($request->get('platform'));
-        // $selectedPlatforms = $request->query->get('platform', []);
-        // dd($selectedPlatforms);
-
         return $this->render('announcement/index.html.twig', [
             'announcements' => $announcements,
             'platforms' => $platforms,
             'categories' => $categories
+        ]);
+    }
+
+    #[Route('/announcement/{id}', name: 'app_announcement_details')]
+    public function showAnnouncement(int $id, AnnouncementRepository $announcementRepository)
+    {
+        $announcement = $announcementRepository->find($id);
+
+        if (!$announcement) {
+            throw $this->createNotFoundException('Annonce non trouvée');
+        }
+
+        return $this->render('announcement/details.html.twig', [
+            'announcement' => $announcement,
         ]);
     }
 
