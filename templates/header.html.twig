@@ -8,23 +8,25 @@
 	<div class="offcanvas-menu-overlay"></div>
 	<div class="offcanvas-menu-wrapper">
 		<div class="offcanvas__close">+</div>
-		<ul class="offcanvas__widget">
-			<li>
-				<span class="icon_search search-switch"></span>
-			</li>
-			<li>
-				<a href="#">
-					<span class="icon_heart_alt"></span>
-					<div class="tip">2</div>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<span class="icon_bag_alt"></span>
-					<div class="tip">2</div>
-				</a>
-			</li>
-		</ul>
+		{% if app.user %}
+			<ul class="offcanvas__widget">
+				<li>
+					<span class="icon_search search-switch"></span>
+				</li>
+				<li>
+					<a href="#">
+						<span class="icon_heart_alt"></span>
+						<div class="tip">2</div>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="icon_bag_alt"></span>
+						<div class="tip">2</div>
+					</a>
+				</li>
+			</ul>
+		{% endif %}
 		<div class="offcanvas__logo">
 			<a href="{{ path('app_home') }}"><img src="{{ asset('img/logo.png') }}" alt=""></a>
 		</div>
@@ -100,23 +102,25 @@
 								<a href="{{ path('app_register') }}">Register</a>
 							{% endif %}
 						</div>
-						<ul class="header__right__widget">
-							<li>
-								<span class="icon_search search-switch"></span>
-							</li>
-							<li>
-								<a href="#">
-									<span class="icon_heart_alt"></span>
-									<div class="tip">2</div>
-								</a>
-							</li>
-							<li>
-								<a href="#">
-									<span class="icon_bag_alt"></span>
-									<div class="tip">2</div>
-								</a>
-							</li>
-						</ul>
+						{% if app.user %}
+							<ul class="header__right__widget">
+								<li>
+									<span class="icon_search search-switch"></span>
+								</li>
+								<li>
+									<a href="#">
+										<span class="icon_heart_alt"></span>
+										<div class="tip">2</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<span class="icon_bag_alt"></span>
+										<div class="tip">2</div>
+									</a>
+								</li>
+							</ul>
+						{% endif %}
 					</div>
 				</div>
 			</div>
