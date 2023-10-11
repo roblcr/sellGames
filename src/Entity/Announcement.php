@@ -6,6 +6,8 @@ use App\Config\Category;
 use App\Config\Platform;
 use App\Config\State;
 use App\Repository\AnnouncementRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -41,6 +43,14 @@ class Announcement
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $publishedDate = null;
+
+    #[ORM\ManyToMany(targetEntity: Cart::class, mappedBy: 'announcements')]
+    private Collection $carts;
+
+    public function __construct()
+    {
+        $this->carts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -141,6 +151,33 @@ class Announcement
     public function setPublishedDate(\DateTimeInterface $publishedDate): static
     {
         $this->publishedDate = $publishedDate;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Cart>
+     */
+    public function getCarts(): Collection
+    {
+        return $this->carts;
+    }
+
+    public function addCart(Cart $cart): static
+    {
+        if (!$this->carts->contains($cart)) {
+            $this->carts->add($cart);
+            $cart->addAnnouncement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCart(Cart $cart): static
+    {
+        if ($this->carts->removeElement($cart)) {
+            $cart->removeAnnouncement($this);
+        }
 
         return $this;
     }
