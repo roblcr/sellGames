@@ -42,11 +42,10 @@
 											<img src="{{ asset('uploads/images/' ~ announcement.images[0]) }}" alt="{{ announcement.title }}" style="max-width: 100px; max-height: 100px;">
 											<div class="cart__product__item__title" style="padding-top: 40px">
 												<h6>{{ announcement.title }}</h6>
-												<!-- Affichez d'autres détails de l'annonce ici -->
 											</div>
 										</td>
 										{# <td class="cart__price">$
-																																																																							{{ announcement.price }}</td> #}
+																																																																																											{{ announcement.price }}</td> #}
 										<td class="cart__quantity">
 											{{announcement.state.name}}
 										</td>
@@ -105,7 +104,7 @@
 						</li>
 					</li>
 				</ul>
-				{# <a href="{{ path('app_checkout') }}" class="primary-btn">Proceed to checkout</a> #}
+				<a href="{{ path('app_checkout') }}" class="primary-btn">Proceed to checkout</a>
 			</div>
 		</div>
 	</div>
