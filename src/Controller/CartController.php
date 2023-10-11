@@ -23,8 +23,14 @@ class CartController extends AbstractController
 
             $announcements = $cart ? $cart->getAnnouncements() : [];
 
+            $cartTotal = 0;
+            foreach ($announcements as $announcement) {
+                $cartTotal += $announcement->getPrice();
+            }
+
             return $this->render('cart/index.html.twig', [
                 'announcements' => $announcements,
+                'cartTotal' => $cartTotal
             ]);
         }
 

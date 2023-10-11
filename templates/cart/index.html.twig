@@ -29,8 +29,8 @@
 							<thead>
 								<tr>
 									<th>Product</th>
-									<th>Price</th>
-									<th>Quantity</th>
+									{# <th>Price</th> #}
+									<th>Etat</th>
 									<th>Total</th>
 									<th></th>
 								</tr>
@@ -45,15 +45,14 @@
 												<!-- Affichez d'autres détails de l'annonce ici -->
 											</div>
 										</td>
-										<td class="cart__price">$
-											{{ announcement.price }}</td>
+										{# <td class="cart__price">$
+																																																																							{{ announcement.price }}</td> #}
 										<td class="cart__quantity">
-											<div class="pro-qty">
-												<input type="text" value="1">
-											</div>
+											{{announcement.state.name}}
 										</td>
-										<td class="cart__total">$
-											{{ announcement.price }}</td>
+										<td class="cart__price">
+											{{ announcement.price }}
+											€</td>
 										<td class="cart__close">
 											<span class="icon_close"></span>
 										</td>
@@ -94,21 +93,20 @@
 						<h6>Cart total</h6>
 						<ul>
 							<li>Subtotal
-								<span>$
-									{# {{ cartTotal }}</span> #}
-								</li>
+								<span>
+									{{ cartTotal }}
+									€</span>
 							</li>
-							<li>Total
-								<span>$
-									{# {{ cartTotal }}</span> #}
-								</li>
-							</li>
-						</ul>
-						{# <a href="{{ path('app_checkout') }}" class="primary-btn">Proceed to checkout</a> #}
-					</div>
-				</div>
+						</li>
+						<li>Total
+							<span>
+								{{ cartTotal }}
+								€</span>
+						</li>
+					</li>
+				</ul>
+				{# <a href="{{ path('app_checkout') }}" class="primary-btn">Proceed to checkout</a> #}
 			</div>
 		</div>
-	</section>
-	<!-- Shop Cart Section End -->
-{% endblock %}
+	</div>
+</div></section><!-- Shop Cart Section End -->{% endblock %}
